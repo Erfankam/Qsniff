@@ -1,0 +1,7 @@
+event: such event includes posts by others include other s post or reply to my post
+
+post: include any post sent by maven wether me or others but include just post not replie with the name of reciepants
+
+story: include any task with the list of whom task assigned to 
+
+workspace: include projects under process include the title of the projects
