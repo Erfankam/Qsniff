@@ -86,8 +86,6 @@ struct sniff_tcp {
 
 
 
-	
-
 void pcap_pkdescr(u_char *args, const struct pcap_pkthdr *pkthdr, const u_char *packet)	 {
 		
 	const struct sniff_ethernet *ethernet; /* The ethernet header */
