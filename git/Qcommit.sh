@@ -1,13 +1,11 @@
 #!/bin/bash
 
-remote_address='git@github.com:Erfan/Qsniff.git'
-remote_name='Erfan'
-remote_branch='master'
-push_command='push -u'
-pull_command='pull -u'
 
 # Default answer is "NO"
 temp_ans='N'
+
+add_command='add -A'
+commit_command='commit -m'
 
 init_script="@@@ GIT script for Qsniff sniffer by Qazal company @@@"
 echo  $init_script
@@ -27,11 +25,11 @@ then
 	exit 1
 fi
 
-# Set remote name to Our repository address
-# and dont show the results
-result=`git remote add $remote_name $remote_address`
+# add changes to index list of git repository
+git $add_command
 
-# first fetch and merge new updates from remote repo
-git $pull_commmand $remote_name $remote_branch
+echo  "Please write your comment about your change in our repository:"
+read comment_str
 
+git $commit_command "$comment_str"
 

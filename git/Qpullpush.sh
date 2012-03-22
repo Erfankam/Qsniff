@@ -33,5 +33,11 @@ result=`git remote add $remote_name $remote_address`
 
 # first fetch and merge new updates from remote repo
 git $pull_commmand $remote_name $remote_branch
-
-
+echo -n  "Are you shore to continue git operation? (Y/N)"
+read -t 5 temp_ans
+if [ "$temp_ans" != 'Y' ]
+then
+	exit 1
+fi
+# then push and upload new changes from local to remote
+git $push_comm $remote_name $remote_branch
