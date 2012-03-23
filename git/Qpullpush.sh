@@ -40,4 +40,4 @@ then
 	exit 1
 fi
 # then push and upload new changes from local to remote
-git $push_comm $remote_name $remote_branch
+git $push_command $remote_name $remote_branch

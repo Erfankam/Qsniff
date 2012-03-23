@@ -32,4 +32,3 @@ echo  "Please write your comment about your change in our repository:"
 read comment_str
 
 git $commit_command "$comment_str"
-
