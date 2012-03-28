@@ -32,5 +32,5 @@ fi
 result=`git remote add $remote_name $remote_address`
 
 # first fetch and merge new updates from remote repo
-git $pull_commmand $remote_name $remote_branch
+git $pull_command $remote_name $remote_branch
 

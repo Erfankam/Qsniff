@@ -32,7 +32,7 @@ fi
 result=`git remote add $remote_name $remote_address`
 
 # first fetch and merge new updates from remote repo
-git $pull_commmand $remote_name $remote_branch
+git $pull_command $remote_name $remote_branch
 echo -n  "Are you shore to continue git operation? (Y/N)"
 read -t 5 temp_ans
 if [ "$temp_ans" != 'Y' ]
