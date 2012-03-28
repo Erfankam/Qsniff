@@ -1,4 +1,6 @@
 1. way to find all interfaces include all ""ethernet and wireless even modems"""
 2. collect some import protocol header including tcp, ip, udp, ethernet
 3. search about support wireless interface in pcap
+4. work on fast and reliabe lib to buffer received packages
+5. see another lib to get some idea how to collect them up
 
