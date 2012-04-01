@@ -12,7 +12,7 @@ temp_ans='N'
 init_script="@@@ GIT script for Qsniff sniffer by Qazal company @@@"
 echo  $init_script
 
-echo  "Are you shore to start new git operation? (Y/N)"
+echo  "Are you sure to start new git operation? (Y/N)"
 read -t 5 temp_ans
 if [ "$temp_ans" != 'Y' ]
 then
@@ -20,7 +20,7 @@ then
 fi
 temp_ans='N'
 git status -u
-echo -n  "Are you shore to continue git operation? (Y/N)"
+echo -n  "Are you sure to continue git operation? (Y/N)"
 read -t 5 temp_ans
 if [ "$temp_ans" != 'Y' ]
 then
