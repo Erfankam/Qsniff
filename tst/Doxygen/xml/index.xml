@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.7.4">
+  <compound refid="test_8c_09_09" kind="file"><name>test.c++</name>
+    <member refid="test_8c_09_09_1acdef7a1fd863a6d3770c1268cb06add3" kind="function"><name>main</name></member>
+  </compound>
+</doxygenindex>
