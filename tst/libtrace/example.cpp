@@ -2,19 +2,21 @@
 #include <iostream>
 using namespace std;
 
-void per_packet(libtrace_packet_t* pkt) {
+void per_packet(libtrace_packet_t* pkt)
+{
 	
 	void *transport;
 	uint32_t remaining;
-    libtrace_tcp_t *tcp;
+	libtrace_tcp_t *tcp;
 	uint8_t proto;
 	  
-    transport = trace_get_transport(pkt, &proto, &remaining);
-    if (transport == NULL)
+	transport = trace_get_transport(pkt, &proto, &remaining);
+	if (transport == NULL)
 		return;
 		
-    if (proto == 6) // TCP protocol num
-    {
+
+	if(proto == 6) // TCP protocol num
+	{
 		tcp = (libtrace_tcp_t *) transport;
 		
 		if (ntohs(tcp->source) == 80)
@@ -39,9 +41,8 @@ int main (int argc, char* argv[])
 		return 1;
 	}
 	
-	while (trace_read_packet(trace, packet)>0) {
+	while (trace_read_packet(trace, packet)>0)
 		per_packet(packet);
-	}
 	
 	trace_destroy(trace);
 	trace_destroy_packet(packet);
