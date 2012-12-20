@@ -35,8 +35,6 @@ struct sniff_ethernet {
 */
 	
 	
-	
-
 /* IP header */
 struct sniff_ip {
 	u_char ip_vhl;		/* version << 4 | header length >> 2 */
@@ -84,14 +82,13 @@ struct sniff_tcp {
 	u_short th_urp;		/* urgent pointer */
 };
 
-
-
 void pcap_pkdescr(u_char *args, const struct pcap_pkthdr *pkthdr, const u_char *packet)	 {
 		
 	const struct sniff_ethernet *ethernet; /* The ethernet header */
 	const struct sniff_ip *ip; /* The IP header */
 	const struct sniff_tcp *tcp; /* The TCP header */
 	const u_char *payload; /* Packet payload */
+    pcap_t* descr = (pcap_t*) args;
 
 	u_int size_ip;
 	u_int size_tcp;
@@ -99,6 +96,12 @@ void pcap_pkdescr(u_char *args, const struct pcap_pkthdr *pkthdr, const u_char *
 	//printf("1:done");
 	ethernet = (struct sniff_ethernet*)(packet);
 	printf("ether_type value = %x\n", ntohs(ethernet->ether_type));
+	printf("ether_type value = %s\n", ethernet->ether_dhost);
+	printf("ether_type value = %s\n", ethernet->ether_shost);
+	printf("pcap_datalink value = %s\n", pcap_datalink_val_to_name(pcap_datalink(descr)));
+	printf("pcap_datalink value = %s\n", pcap_datalink_val_to_description(pcap_datalink(descr)));
+	printf("pcap_pkthdr->len = %i\n", pkthdr->len);
+	printf("pcap_pkthdr->len = %i\n", pkthdr->caplen);
 	switch (ntohs(ethernet->ether_type)) {
 		case (0x0800):fprintf(stdout, "ether_type = IP\n");break;
 		case (0x0806):fprintf(stdout, "ether_type = ARP\n");break;
@@ -148,7 +151,7 @@ int main (int argc, char * argv[]) {
 	bpf_u_int32 maskp;					/* subnet mask address  */
 	bpf_u_int32 netp;					/* ip network address */
 	/*struct pcap_pkthdr pcaphdr; 		 :pcap.h -> packet header of pcap */
-	u_char *packet;						/* The actual packet */
+	//u_char *packet;						/* The actual packet */
 	/*struct pcap_stat statp;				 pcap status structure */
 	
 	
@@ -192,9 +195,14 @@ int main (int argc, char * argv[]) {
 		return(2);
 	}
 	/*and at last:live capture of network */
-	switch(pcap_loop(descr, atoi(argv[1]), pcap_pkdescr, packet)) {
+
+	switch(pcap_loop(descr, -1, pcap_pkdescr, (u_char*)descr)) {
+
+	    //printf("pcap_datalink = %i\n", pcap_datalink(descr));
+	    ///printf("pcap_datalink = %i\n", pcap_datalink(descr));
+        //return 0;
 		case (-1) : 
-			fprintf(stderr, "There was an occured during capturing :%s \n", pcap_geterr(descr));
+			fprintf(stderr, "There was an error occured during capturing :%s \n", pcap_geterr(descr));
 			return(2);
 		
 		case (-2) : 

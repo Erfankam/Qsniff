@@ -3,4 +3,6 @@
 3. search about support wireless interface in pcap
 4. work on fast and reliabe lib to buffer received packages
 5. see another lib to get some idea how to collect them up
+6. take a look at linux/ether.h
+9. Get protocol linux_sll
 

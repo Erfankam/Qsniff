@@ -1,2 +1,12 @@
 *.swp
 *.swo
+*.swn
+.*.swp
+.*.swo
+.*.swn
+.*.*.swp
+.*.*.swo
+.*.*.swn
+.out
+.exe
+.gitignore
