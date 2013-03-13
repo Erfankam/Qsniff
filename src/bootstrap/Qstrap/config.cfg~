@@ -1,0 +1,18 @@
+mysql_settings : 
+{
+  host = "localhost";
+  user = "qsniff";
+  password = "qq";
+  database = "qdb";
+  port = 0;
+};
+mysql_tables : 
+{
+  ip_header : 
+  {
+    timestamp = [ "bigint", "unsigned", "primary key" ];
+    protocol = [ "tinyint", "unsigned", "not null" ];
+    source_ip = [ "int", "unsigned", "not null" ];
+    destination_ip = [ "int", "unsigned", "not null" ];
+  };
+};

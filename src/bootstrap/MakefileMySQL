@@ -1,0 +1,14 @@
+CC = gcc
+INCLUDES = ${shell mysql_config --include}
+LIBS = ${shell mysql_config --libs}
+
+all: mysql
+
+mysql.o: mysql.c
+			$(CC) -c $(INCLUDES) mysql.c
+
+mysql: mysql.o
+			$(CC) -o mysql mysql.o $(LIBS)
+
+clean:
+			rm -f mysql mysql.o

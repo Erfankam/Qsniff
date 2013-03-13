@@ -1,0 +1,18 @@
+mysql_settings : 
+{
+  host = "localhost";
+  user = "temp";
+  password = "pass";
+  database = "testdb";
+  port = 0;
+};
+mysql_tables : 
+{
+  ip_header : 
+  {
+    timestamp = [ "bigint", "primary key" ];
+    protocol = [ "tinyint unsigned", "not null" ];
+    source_ip = [ "int unsigned", "not null" ];
+    destination_ip = [ "int unsigned", "not null" ];
+  };
+};
