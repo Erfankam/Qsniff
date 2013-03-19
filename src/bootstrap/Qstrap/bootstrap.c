@@ -29,6 +29,7 @@ int main () {
 	/*
 	 *	PART 2 : CONFIG FILE CREATION
 	*/
+	int mysql_hostname_lengh = 16;
 
 	const char *value;
 	int num;
@@ -112,7 +113,7 @@ int main () {
 	if (mysql_real_connect(conn, host_name, user_name, password, db_name, 
 								port_num, socket_name, flags) == NULL)
 	{
-		Qdb_error(conn, "Connection was failed.");
+Qdb_error(conn, "Connection was failed.");
 		Qdb_disconnect(conn);
 		return 1;
 	}
@@ -123,6 +124,7 @@ int main () {
 	}
 	db_name = strcpy(db_name, value);
 
+	//FIXME:512
 	char *qry = (char*) malloc (4096 * sizeof (char));
 
 	qry = strcpy(qry, "create database if not exists ");
