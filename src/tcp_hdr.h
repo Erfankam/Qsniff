@@ -1,7 +1,7 @@
 
 typedef	u_int32_t tcp_seq;
 /* TCP header */
-struct sniff_tcp {
+struct tcp_hdr {
 	u_short th_sport;	/* source port */
 	u_short th_dport;	/* destination port */
 	tcp_seq th_seq;		/* sequence number */
