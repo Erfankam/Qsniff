@@ -7,6 +7,6 @@
 .*.*.swp
 .*.*.swo
 .*.*.swn
-.out
-.exe
+*.out
+*.exe
 .gitignore
