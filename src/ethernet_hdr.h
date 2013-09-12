@@ -11,4 +11,3 @@ struct ethernet_hdr {
 	u_char ether_shost[ETHER_ADDR_LEN]; /* Source host address */
 	u_short ether_type; /* IP? ARP? RARP? etc */
 };	
-	
