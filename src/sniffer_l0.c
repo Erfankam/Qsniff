@@ -5,12 +5,21 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include "sniff_sql.h"
 
 #include "sniffer_l1.h"
+#include "mysql/mysql.h"
 
 
 /* Prototyping of sniffer level 1 */
 void sniffer_l1(u_char *args, const struct pcap_pkthdr *pkthdr, const u_char *packet);
+
+void finish_with_error(MYSQL *con)
+{
+  printf("%s\n", mysql_error(con));
+  mysql_close(con);
+  exit(1);        
+}
 
 int sniffer_l0(int argc, char * argv[]) {
 	
@@ -64,7 +73,19 @@ int sniffer_l0(int argc, char * argv[]) {
 	}
 	/*and at last:live capture of network */
 
-	switch(pcap_loop(descr, -1, sniffer_l1, (u_char*)descr)) {
+	MYSQL *con = mysql_init(NULL);
+	if (con == NULL) 
+	{
+		fprintf(stderr, "%s\n", mysql_error(con));
+		exit(1);
+	}  
+
+	if (mysql_real_connect(con, "localhost", argv[2], argv[3], 
+		"QSniffer_db", 0, NULL, 0) == NULL) 
+	{
+		finish_with_error(con);
+	}    
+	switch(pcap_loop(descr, -1, sniffer_l1, (u_char*)con)) {
 
 	    //printf("pcap_datalink = %i\n", pcap_datalink(descr));
 	    ///printf("pcap_datalink = %i\n", pcap_datalink(descr));
@@ -82,9 +103,10 @@ int sniffer_l0(int argc, char * argv[]) {
 			pcap_close(descr);
 			return(0);
 	}
+	mysql_close(con);
 	return(0);
 
 }
 int main(int argc, char** argv) {
-    sniffer_l0(argc, argv);
+	sniffer_l0(argc, argv);
 }
